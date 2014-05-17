@@ -1,3 +1,8 @@
+临时下载地址：
+
+* [merry v1.0.0 windows](https://code.google.com/p/name5566-merry/downloads/detail?name=merry_1.0.0_windows.rar&can=2&q=)
+* [Merry v0.1.2](https://code.google.com/p/name5566-merry/downloads/detail?name=Merry-v0.1.2.rar&can=2&q=)
+
 本文总是以最新版本的 Merry 为准，因此下载的老版本可能和文档中描述的部分功能不符。
 
 Merry 被设计用于简化对计算机的操作，其可以将一组操作定义为一个可执行的 Merry 命令并通过命令名、快捷键等方式执行。
@@ -26,6 +31,7 @@ Merry 的特点和功能
 认识 Merry
 ----------
 Merry 运行之后的样子：
+
 ![Merry 运行之后的样子](http://name5566.com/wp-content/uploads/2012/09/merry_1.0.0.png)
 
 对于 Windows 用户来说，Windows 本身提供了一些快捷键，例如：
@@ -452,9 +458,9 @@ end }
 
 ```lua
 addCommand{ command = 'cmd', key = 'A-T', func = function()
-        local window = getForegroundWindow()
-        local dir = getWindowText(window)
-        shellExecute('cmd', '', dir)
+    local window = getForegroundWindow()
+    local dir = getWindowText(window)
+    shellExecute('cmd', '', dir)
 end }
 ```
 
@@ -462,7 +468,7 @@ end }
 
 ```lua
 addCommand{ key = 'A-E', func = function()
-        enterKey('e', 'x', 'p', 'l', 'o', 'r', 'e', 'r', 'Space', '.', 'Return')
+    enterKey('e', 'x', 'p', 'l', 'o', 'r', 'e', 'r', 'Space', '.', 'Return')
 end }
 ```
 
@@ -471,7 +477,7 @@ end }
 ```lua
 -- 使用快捷键 A-n 输入 name
 addCommand{ key = 'A-n', func = function()
-        enterKey('n', 'a', 'm', 'e')
+    enterKey('n', 'a', 'm', 'e')
 end }
 ```
 
@@ -482,13 +488,13 @@ end }
 历史上的 Merry
 --------------
 
-## 2012/11/02
+### 2012/11/02
 
 Merry 的第一个对外版本发布，版本号 0.1.2，此版本仅仅支持 Windows
 
 ![Merry 第一个对外版本](http://name5566.com/wp-content/uploads/2012/09/merry.png)
 
-## 2013/04/02
+### 2013/04/02
 
 Merry 的第二个对外版本发布，版本号 1.0.0。版本相对于 0.1.2 的变化：
 
@@ -504,22 +510,22 @@ TODO LIST
 
 版本 v0.1 目标
 
-* 增加模拟按键 API（已完成）
-* 增加按键映射的 API（目前不考虑增加此 API，建议使用其他软件完成此功能，例如 Windows 下的 KeyTweak?）
-* 增加界面配置的 API（已完成）
-* 增加鼠标点击等相关 API（已完成）
-* 窗口管理相关的 API（已完成）
-* 增加定时器相关的 API（已完成）
-* 增加事件，例如：Merry 关闭事件等（已完成）
-* 增加重新载入配置文件的功能（已完成）
+* ~~增加模拟按键 API（已完成）~~
+* ~~增加按键映射的 API（目前不考虑增加此 API，建议使用其他软件完成此功能，例如 Windows 下的 KeyTweak）~~
+* ~~增加界面配置的 API（已完成）~~
+* ~~增加鼠标点击等相关 API（已完成）~~
+* ~~窗口管理相关的 API（已完成）~~
+* ~~增加定时器相关的 API（已完成）~~
+* ~~增加事件，例如：Merry 关闭事件等（已完成）~~
+* ~~增加重新载入配置文件的功能（已完成）~~
 
 版本 v0.2 目标
 
-* 自动补全和下拉列表的支持（已完成）
-* 增加系统托盘（已完成）
-* 历史记录的支持（已完成）
-* 增加下列列表界面配置的 API（暂不考虑此功能）
-* 替换 Win API RegisterHotKey? 通过 Hook 实现快捷键（暂不考虑此功能）
+* ~~自动补全和下拉列表的支持（已完成）~~
+* ~~增加系统托盘（已完成）~~
+* ~~历史记录的支持（已完成）~~
+* ~~增加下列列表界面配置的 API（暂不考虑此功能）~~
+* ~~替换 Win API RegisterHotKey 通过 Hook 实现快捷键（暂不考虑此功能）~~
 
 版本 v1.0 目标
 
