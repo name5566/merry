@@ -1,7 +1,9 @@
-### Merry 的临时下载地址：
+Merry 的临时下载地址
+--------------------
 
-* [merry v1.0.0 windows](https://code.google.com/p/name5566-merry/downloads/detail?name=merry_1.0.0_windows.rar&can=2&q=)
-* [Merry v0.1.2](https://code.google.com/p/name5566-merry/downloads/detail?name=Merry-v0.1.2.rar&can=2&q=)
+* [merry v1.0.1 windows](http://pan.baidu.com/s/1c029j92)
+* [merry v1.0.0 windows](http://pan.baidu.com/s/1hq20ZRm)
+* [Merry v0.1.2](http://pan.baidu.com/s/11rtvS)
 
 本文总是以最新版本的 Merry 为准，因此下载的老版本可能和文档中描述的部分功能不符。
 
