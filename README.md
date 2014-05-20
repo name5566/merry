@@ -38,7 +38,7 @@ Merry 运行之后的样子：
 
 打开 Merry 命令输入窗口（Alt + R）可以执行命令。命令输入时会自动补全，如果需要为命令输入参数时则敲一下 TAB 键，例如：
 
-[使用 TAB 键](http://name5566.com/wp-content/uploads/2014/05/merry_arg.gif)
+![使用 TAB 键](http://name5566.com/wp-content/uploads/2014/05/merry_arg.gif)
 
 默认提供的一些命令有：
 
