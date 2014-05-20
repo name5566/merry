@@ -7,28 +7,10 @@ Merry 的临时下载地址
 
 本文总是以最新版本的 Merry 为准，因此下载的老版本可能和文档中描述的部分功能不符。
 
-Merry 被设计用于简化对计算机的操作，其可以将一组操作定义为一个可执行的 Merry 命令并通过命令名、快捷键等方式执行。
-
-Merry 名字的由来
-----------------
-Merry 是本软件的开发代号，此名字来源于漫画《[海贼王](http://movie.douban.com/subject/1453238/)》的一艘叫梅利号的船（详细的故事请关注《海贼王》）。
-
-为什么开发 Merry
-----------------
-最初使用 Linux 系统非常喜欢 gmrun + openbox 的组合，gmrun 能够弹出一个命令输入窗口，输入程序的名称就可以执行对应的程序，而 openbox 则可以非常方便的进行快捷键的绑定。后来使用 Windows 系统时，一直没有找到类似的替代软件，从而萌发了自己开发一个的想法。简单的制作之后，我开始使用 Merry，经过长时间的使用发现确实带来了很多的便利，致使之后使用没有安装 Merry 的机器时感觉很不习惯，这时候我发现它应该是一个有用的软件，于是有了今天的开源软件 Merry。随着时间的流逝 Merry 已经越来越丰富，而不仅仅只有上述这么简单的功能而已，只要你有想法，Merry 能尽量帮助你实现。
-
 Merry 的目标
 ------------
-在基于窗口的操作系统中，简化一切重复、繁琐的操作并提供一些实用的功能。
-
-Merry 的特点和功能
-------------------
-* 跨平台的支持，让你在所有平台下保持一致的操作方式（目前 Windows 版本功能完善，Linux、MacOS 版仅仅支持部分功能且暂时不提供下载）
-* 可以定义 Merry 命令（快捷键）来完成一些常用的操作，例如：打开目录、启动程序、打开网页等
-* 通过 Merry 命令可以模拟用户的输入，例如：模拟键盘和鼠标输入
-* 通过 Merry 可以轻松的管理窗口，例如：关闭窗口、最大化和还原窗口、移动窗口、隐藏窗口等
-* 通过 Merry 命令可以来进行自动化的操作，例如：打开某应用程序，自动输入用户密码进行登录等
-* Merry 采用完全开放的体系，可以使用 [Lua](http://www.lua.org/) 的扩展库或者外部程序来扩展 Merry 的功能
+Merry 被设计为了能将日常重复性操作简化为一个快捷键或者命令。Merry 采用完全开放的体系，
+可以使用 [Lua](http://www.lua.org/) 或者外部程序来扩展 Merry 的功能。
 
 认识 Merry
 ----------
@@ -42,7 +24,7 @@ Merry 运行之后的样子：
 * W-L 用来锁定计算机
 * S-F10（表示 Shift + F10）用来显示右键菜单
 
-默认的配置下，Merry 能够提供一些快捷键（又被叫做 key 或者触发键 trigger key），作为系统提供快捷键的一个补充：
+默认的配置下，Merry 能够提供一些快捷键作为一个补充：
 
 * A-R（表示 Alt + R）能够用来打开和隐藏 Merry 的界面
 * A-M 用于最大化或者还原（如果已经最大化）当前窗口
@@ -54,9 +36,30 @@ Merry 运行之后的样子：
 * A-Left 用于调小音量
 * A-Right 用于调大音量
 
-Merry 命令
+打开 Merry 命令输入窗口（Alt + R）可以执行命令。命令输入时会自动补全，如果需要为命令输入参数时则敲一下 TAB 键，例如：
+
+[使用 TAB 键](http://name5566.com/wp-content/uploads/2014/05/merry_arg.gif)
+
+默认提供的一些命令有：
+
+* 输入 c、d、e 分别打开 C 盘、D 盘、E 盘
+* 输入 computer 打开我的电脑
+* 输入 ip 获取本机 IP 地址
+* 输入 merry 打开 Merry 的安装目录
+* 输入 "ping <TAB> 地址" 来 ping 地址
+* 输入 "google <TAB> 需要查找的内容" 使用 google 进行搜索（类似的命令包括：baidu、youku、doubanbook、doubanmovie 等）
+* 输入 "dict <TAB> 单词" 使用 dict.cn 来查单词
+
+另外：
+* 输入 \\192.168.1.1 来访问 IP 地址为 192.168.1.1 的共享
+* 输入 ftp://192.168.1.1 来访问 IP 地址为 192.168.1.1 的 FTP
+* 输入 http://baidu.com 来访问 baidu.com
+
+深入 Merry
 ----------
-当然 Merry 不会仅仅是一个提供简单快捷键功能的软件，Merry 的核心术语是：Merry 命令。在 Merry 窗口中输入的字符被叫做 Merry 的命令。我们可以在 Merry 的配置文件 Merry.lua 中添加任何我们需要的 Merry 命令（Merry.lua 是一个 [lua](http://www.lua.org/) 文件，Merry 使用 Lua 处理配置脚本）。Merry 命令能够绑定一个 Lua 函数，也就是说可以通过 Lua 函数来定义一个 Merry 命令。具体来说，一个 Merry 命令包括：
+如果 Merry 只能做了上面的工作，那确实弱爆了。实际上 Merry 希望用户自己来定义各种命令满足自己特定的需要，特别来说，希望大家能够留心日常中那些重复的操作（[Don't repeat yourself](http://en.wikipedia.org/wiki/Don't_repeat_yourself)）并将它们编写为命令，使用 Merry 快捷完成。配置文件 my_conf.lua 就被用于写入用户自定义的命令。
+
+在 Merry 中，每一个命令对应一个 Lua 函数，在命令窗口中执行命令也就是执行此命令对应的 Lua 函数。具体来说，一个 Merry 命令包括：
 
 1. 一个可选的命令名，命令名不区分大小写，如果没有设定快捷键则必须设定命令名
 2. 一个可选的快捷键，快捷键不区分大小写，如果没有设定命令名则必须设定快捷键
@@ -75,7 +78,7 @@ end }
 
 有了上面这个命令，我们在 Merry 的命令窗口中输入 c 回车就会打开 C:
 
-每一个 Merry 命令都可以带有参数，在 Merry 命令窗口中输入的字符串： string1 string2 string3 ... stringN 以第一个空格为标准，Merry 命令被解析为 "string1" 为命令的名字，"string 2 string3 ... stringN" 为命令的参数，参数将以字符串的形式传递给设定的 Lua 函数。例如在命令窗口中输入 say hello，表示执行命令 say，命令的参数为 hello：
+每一个命令都可以带有参数，在 Merry 命令窗口中输入的字符串： string1 string2 string3 ... stringN 以第一个空格为标准，Merry 命令被解析为 "string1" 为命令的名字，"string 2 string3 ... stringN" 为命令的参数，参数将以字符串的形式传递给设定的 Lua 函数。例如在命令窗口中输入 say hello，表示执行命令 say，命令的参数为 hello：
 
 ```lua
 -- 增加命令 say
@@ -85,7 +88,7 @@ addcommand{ command = 'say', func = function(arg)
 end }
 ```
 
-对于上面这个命令，当我们输入 say hi 的时候，将弹出一个对话框，上面写着 "hi"。作为范例，Merry 的默认配置中，我们有两个命令 google 和 baidu，他们分别使用默认浏览器打开 google 和百度进行搜索，例如我们可以输入：google merry 快捷键。
+对于上面这个命令，当我们输入 say hi 的时候，将弹出一个对话框，上面写着 "hi"。
 
 每一个 Merry 命令都可以绑定一个快捷键，例如：
 
@@ -93,7 +96,7 @@ end }
 addCommand{ key = 'A-Q', func = function() closeWindow(getForegroundWindow()) end }
 ```
 
-此命令没有命令名，仅仅设定了一个快捷键 Alt + Q。快捷键使用 "X-Y" 这样的字符串（不区分大小写）描述，例如： A-l 表示 Alt + l A-C-c 表示 Alt + Control + c 在快捷键描述字符串 "X-Y" 中 X 为可选的（也就是快捷键可以为一个按键，例如 F9），可以为：
+此命令没有命令名，仅仅设定了一个快捷键 Alt + Q。快捷键使用 "X-Y" 这样的字符串（不区分大小写）描述，例如： A-l 表示 Alt + l，A-C-c 表示 Alt + Control + c 在快捷键描述字符串 "X-Y" 中 X 为可选的（也就是快捷键可以为一个按键，例如 F9），X 可以为：
 
 * A 表示 Alt 键
 * C 表示 Control 键
@@ -107,13 +110,20 @@ addCommand{ key = 'A-Q', func = function() closeWindow(getForegroundWindow()) en
 
 可用的表示按键的[字符串在这里](https://github.com/name5566/merry/wiki/MerryKeyString)（部分按键字符串在 Windows 下无效）。
 
-上面就是 Merry 的基本功能的一个展示，我们可以定义各种各样的命令，满足我们的需要，特别是解决每天需要重复进行的一些工作（[Don't repeat yourself](http://en.wikipedia.org/wiki/Don't_repeat_yourself)），使用 Merry 使它们能够更加便捷的完成。
-
 Merry 的配置和 API
 ------------------
-只要稍学习一下 lua 编程语言，就可以灵活的配置 Merry。配置文件位于 config 目录中，common.lua 为 Merry 提供了默认的配置。
+只要稍学习一下 Lua 编程语言，就可以灵活的配置 Merry。配置文件位于 config 目录中，common.lua 为 Merry 提供了默认的配置。
 
-这里介绍一下 Merry 配置文件的 API：
+通过 Merry 配置文件的 API，你可以：
+
+* 运行程序
+* 控制窗口
+* 控制鼠标和键盘
+* 定时执行任务
+
+除此之外，你还可以直接利用 Lua 扩展库、外部应用程序近乎无限的扩展 Merry 的功能。
+
+API 如下：
 
 shellExecute
 
@@ -392,8 +402,8 @@ Merry 软件的使用技巧
 * 如何开机自动运行 Merry？在 Windows 下，把 Merry 的快捷方式放入启动目录（启动目录可以在开始菜单中找到）
 * 如何快捷的关闭 Merry？默认情况下，最简单的关闭 Merry 的方法就是用 A-R 呼出 Merry，然后用 A-Q（关闭窗口的快捷键）关闭 Merry
 * 如何调试 Merry 配置脚本？目前你可以使用 message 来输出一些调试信息，暂时不打算提供过于强大的调试功能
-* 中文乱码的问题。如果出现中文乱码，考虑 Merry.lua 的文件编码是否正确，Merry.lua 文件需要是 ANSI 编码的。Windows 下可以使用 Notepad 修改编码方式，具体的做法是用 Notepad 打开 Merry.lua，然后另存为 Merry.lua 并且选择编码为 ANSI
-* Windows 下的命令小技巧。我们可以建立一个目录并将其加入到环境变量 PATH 中，然后将程序、目录等快捷方式放入此目录中，那么在 Merry 中输入这些快捷方式的名称后将运行指定程序，不过注意，此技巧可能会无法进行命令的自动补全
+* 中文乱码的问题。如果出现中文乱码，考虑 Lua 文件编码是否正确，Lua 文件需要是 ANSI 编码的。Windows 下可以使用 Notepad 修改编码方式，具体的做法是用 Notepad 打开 Lua 文件，然后在保存时选择编码为 ANSI
+* Windows 下的命令小技巧。我们可以建立一个目录并将其加入到环境变量 PATH 中，然后将程序、目录等快捷方式放入此目录中，那么在 Merry 中输入这些快捷方式的名称后将运行指定程序
 * 使用 Merry 配置 DOTA、魔兽的改键：
 
 ```lua
@@ -451,7 +461,7 @@ end }
 * 使用鼠标选中文件后，使用快捷键来自动打开 VIM 对文件进行编辑，在 Windows 7 下，希望使用 VIM 来编辑文件一般这么做：在文件上点击右键，然后敲击 V 按键，最后回车（也许还有其他的办法）。这种操作比较繁琐，现在通过 Merry 我们可以定义一个快捷键，快速打开 VIM 来编辑当前选中文件：
 
 ```lua
-addCommand{ key = 'C-F1', func = function()
+addCommand{ key = 'C-1', func = function()
     enterKey('S-F10', 'V', 'Return')
 end }
 ```
@@ -473,17 +483,6 @@ addCommand{ key = 'A-E', func = function()
     enterKey('e', 'x', 'p', 'l', 'o', 'r', 'e', 'r', 'Space', '.', 'Return')
 end }
 ```
-
-* 自动输入用户名和密码。我们经常需要输入我们的用户名和密码，Merry 可以帮我们自动输入：
-
-```lua
--- 使用快捷键 A-n 输入 name
-addCommand{ key = 'A-n', func = function()
-    enterKey('n', 'a', 'm', 'e')
-end }
-```
-
-我们当然也可以自动来输入密码，不过直接把密码明文保存在配置文件中并不安全（当然你可以使用其他的小程序来扩展 Merry 使得能够较为安全的保存密码）。
 
 * 清理历史记录。一个不存在的 Merry 命令，一旦被成功执行就会被记录下来，保存在 Histroy.lua 中，我们可以通过编辑此文件来修改或者清理历史记录。
 

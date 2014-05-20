@@ -35,7 +35,8 @@ if WINDOWS then
 
 	addCommand{ command = 'computer', func = function() shellExecute('::{20D04FE0-3AEA-1069-A2D8-08002B30309D}', '', '', 'max') end }
 	addCommand{ command = 'merry', func = function() shellExecute('explorer', '.', '', 'max') end }
-	addCommand{ command = 'ie', func = function() shellExecute('iexplorer', '', '', 'max') end }
+	addCommand{ command = 'ip', func = function() shellExecute('cmd', '/K ipconfig') end }
+	addCommand{ command = 'ping', func = function(str) shellExecute('cmd', '/K ping ' .. str) end }
 
 	addCommand{ command = 'cmd', key = 'A-T', func = function(arg)
 		local window = getForegroundWindow()
