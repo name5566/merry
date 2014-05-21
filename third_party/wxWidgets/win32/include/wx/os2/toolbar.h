@@ -4,7 +4,6 @@
 // Author:      David Webster
 // Modified by:
 // Created:     10/17/98
-// RCS-ID:      $Id$
 // Copyright:   (c) David Webster
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -35,7 +34,7 @@ public:
                      ,wxWindowID      vId
                      ,const wxPoint&  rPos = wxDefaultPosition
                      ,const wxSize&   rSize = wxDefaultSize
-                     ,long            lStyle = wxNO_BORDER | wxTB_HORIZONTAL
+                     ,long            lStyle = wxTB_HORIZONTAL
                      ,const wxString& rName = wxToolBarNameStr
                     ) : m_vToolTimer(this, ID_TOOLTIMER)
                       , m_vToolExpTimer(this, ID_TOOLEXPTIMER)
@@ -55,7 +54,7 @@ public:
                 ,wxWindowID      vId
                 ,const wxPoint&  rPos = wxDefaultPosition
                 ,const wxSize&   rSize = wxDefaultSize
-                ,long            lStyle = wxNO_BORDER | wxTB_HORIZONTAL
+                ,long            lStyle = wxTB_HORIZONTAL
                 ,const wxString& rName = wxToolBarNameStr
                );
 

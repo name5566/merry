@@ -3,7 +3,6 @@
 // Purpose:     wxSocketImpl and related declarations
 // Authors:     Guilhem Lavaux, Vadim Zeitlin
 // Created:     April 1997
-// RCS-ID:      $Id$
 // Copyright:   (c) 1997 Guilhem Lavaux
 //              (c) 2008 Vadim Zeitlin
 // Licence:     wxWindows licence
@@ -79,10 +78,6 @@
 
 // define some symbols which winsock.h defines but traditional BSD headers
 // don't
-#ifndef __WINDOWS__
-    #define SOCKET int
-#endif
-
 #ifndef INVALID_SOCKET
     #define INVALID_SOCKET (-1)
 #endif
@@ -293,7 +288,7 @@ public:
     // TODO: make these fields protected and provide accessors for those of
     //       them that wxSocketBase really needs
 //protected:
-    SOCKET m_fd;
+    wxSOCKET_T m_fd;
 
     int m_initialRecvBufferSize;
     int m_initialSendBufferSize;

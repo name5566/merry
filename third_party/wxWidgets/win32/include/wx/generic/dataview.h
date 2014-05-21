@@ -3,7 +3,6 @@
 // Purpose:     wxDataViewCtrl generic implementation header
 // Author:      Robert Roebling
 // Modified By: Bo Yang
-// Id:          $Id$
 // Copyright:   (c) 1998 Robert Roebling
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -70,7 +69,7 @@ public:
 
     virtual bool IsSortKey() const { return m_sort; }
 
-    virtual void UnsetAsSortKey() { m_sort = false; UpdateDisplay(); }
+    virtual void UnsetAsSortKey();
 
     virtual void SetSortOrder(bool ascending);
 
@@ -182,6 +181,8 @@ public:
 
     virtual void SetFocus();
 
+    virtual bool SetFont(const wxFont & font);
+
 #if wxUSE_DRAG_AND_DROP
     virtual bool EnableDragSource( const wxDataFormat &format );
     virtual bool EnableDropTarget( const wxDataFormat &format );
@@ -225,6 +226,9 @@ public:     // utility functions not part of the API
 
     // return the index of the given column in m_cols
     int GetColumnIndex(const wxDataViewColumn *column) const;
+
+    // Return the index of the column having the given model index.
+    int GetModelColumnIndex(unsigned int model_column) const;
 
     // return the column displayed at the given position in the control
     wxDataViewColumn *GetColumnAt(unsigned int pos) const;

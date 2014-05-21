@@ -4,7 +4,6 @@
 // Author:      Vadim Zeitlin
 // Modified by:
 // Created:     2004-12-12
-// RCS-ID:      $Id$
 // Copyright:   (c) 2004 Vadim Zeitlin <vadim@wxwindows.org>
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -62,6 +61,8 @@
         #define wxCOMPILER_PREFIX vc100
     #elif _MSC_VER == 1700
         #define wxCOMPILER_PREFIX vc110
+    #elif _MSC_VER == 1800
+        #define wxCOMPILER_PREFIX vc120
     #else
         #error "Unknown MSVC compiler version, please report to wx-dev."
     #endif
@@ -78,16 +79,29 @@
     #define wxARCH_SUFFIX
 #endif
 
+// Ensure the library configuration is defined
+#ifndef wxCFG
+    #define wxCFG
+#endif
+
+// Construct the path for the subdirectory under /lib/ that the included setup.h
+// will be used from
 #ifdef WXUSINGDLL
-    #define wxLIB_SUBDIR wxCONCAT3(wxCOMPILER_PREFIX, wxARCH_SUFFIX, _dll)
+    #define wxLIB_SUBDIR \
+        wxCONCAT4(wxCOMPILER_PREFIX, wxARCH_SUFFIX, _dll, wxCFG)
 #else // !DLL
-    #define wxLIB_SUBDIR wxCONCAT3(wxCOMPILER_PREFIX, wxARCH_SUFFIX, _lib)
+    #define wxLIB_SUBDIR \
+        wxCONCAT4(wxCOMPILER_PREFIX, wxARCH_SUFFIX, _lib, wxCFG)
 #endif // DLL/!DLL
 
 // The user can predefine a different prefix if not using the default MSW port
 // with MSVC.
 #ifndef wxTOOLKIT_PREFIX
-    #define wxTOOLKIT_PREFIX msw
+    #if defined(__WXGTK__)
+        #define wxTOOLKIT_PREFIX gtk2
+    #else
+        #define wxTOOLKIT_PREFIX msw
+    #endif
 #endif // wxTOOLKIT_PREFIX
 
 // the real setup.h header file we need is in the build-specific directory,
@@ -134,6 +148,9 @@
 #pragma comment(lib, wxWX_LIB_NAME("base", ""))
 
 #ifndef wxNO_NET_LIB
+    #ifndef WXUSINGDLL
+        #pragma comment(lib, "wsock32")
+    #endif
     #pragma comment(lib, wxBASE_LIB_NAME("net"))
 #endif
 #ifndef wxNO_XML_LIB
@@ -199,6 +216,9 @@
             #pragma comment(lib, wx3RD_PARTY_LIB_NAME("scintilla"))
         #endif
     #endif
+    #if wxUSE_WEBVIEW && !defined(wxNO_WEBVIEW_LIB)
+        #pragma comment(lib, wxTOOLKIT_LIB_NAME("webview"))
+    #endif
 #endif // wxUSE_GUI
 
 
@@ -218,8 +238,19 @@
     #pragma comment(lib, "uuid")
     #pragma comment(lib, "rpcrt4")
     #pragma comment(lib, "advapi32")
-    #pragma comment(lib, "wsock32")
     #if wxUSE_URL_NATIVE
         #pragma comment(lib, "wininet")
+    #endif
+
+    #ifdef __WXGTK__
+        #pragma comment(lib, "gtk-win32-2.0.lib")
+        #pragma comment(lib, "gdk-win32-2.0.lib")
+        #pragma comment(lib, "pangocairo-1.0.lib")
+        #pragma comment(lib, "gdk_pixbuf-2.0.lib")
+        #pragma comment(lib, "cairo.lib")
+        #pragma comment(lib, "pango-1.0.lib")
+        #pragma comment(lib, "gobject-2.0.lib")
+        #pragma comment(lib, "gthread-2.0.lib")
+        #pragma comment(lib, "glib-2.0.lib")
     #endif
 #endif // !WXUSINGDLL

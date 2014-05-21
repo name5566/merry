@@ -4,7 +4,6 @@
 // Author:      Peter Cawley
 // Modified by:
 // Created:     2009-07-06
-// RCS-ID:      $Id$
 // Copyright:   (C) Peter Cawley
 // Licence:     wxWindows licence
 ///////////////////////////////////////////////////////////////////////////////
@@ -231,8 +230,8 @@ private:
 
 #ifndef SWIG
 
-wxDECLARE_EXPORTED_EVENT(WXDLLIMPEXP_RIBBON, wxEVT_COMMAND_RIBBONTOOL_CLICKED, wxRibbonToolBarEvent);
-wxDECLARE_EXPORTED_EVENT(WXDLLIMPEXP_RIBBON, wxEVT_COMMAND_RIBBONTOOL_DROPDOWN_CLICKED, wxRibbonToolBarEvent);
+wxDECLARE_EXPORTED_EVENT(WXDLLIMPEXP_RIBBON, wxEVT_RIBBONTOOLBAR_CLICKED, wxRibbonToolBarEvent);
+wxDECLARE_EXPORTED_EVENT(WXDLLIMPEXP_RIBBON, wxEVT_RIBBONTOOLBAR_DROPDOWN_CLICKED, wxRibbonToolBarEvent);
 
 typedef void (wxEvtHandler::*wxRibbonToolBarEventFunction)(wxRibbonToolBarEvent&);
 
@@ -240,20 +239,24 @@ typedef void (wxEvtHandler::*wxRibbonToolBarEventFunction)(wxRibbonToolBarEvent&
     wxEVENT_HANDLER_CAST(wxRibbonToolBarEventFunction, func)
 
 #define EVT_RIBBONTOOLBAR_CLICKED(winid, fn) \
-    wx__DECLARE_EVT1(wxEVT_COMMAND_RIBBONTOOL_CLICKED, winid, wxRibbonToolBarEventHandler(fn))
+    wx__DECLARE_EVT1(wxEVT_RIBBONTOOLBAR_CLICKED, winid, wxRibbonToolBarEventHandler(fn))
 #define EVT_RIBBONTOOLBAR_DROPDOWN_CLICKED(winid, fn) \
-    wx__DECLARE_EVT1(wxEVT_COMMAND_RIBBONTOOL_DROPDOWN_CLICKED, winid, wxRibbonToolBarEventHandler(fn))
+    wx__DECLARE_EVT1(wxEVT_RIBBONTOOLBAR_DROPDOWN_CLICKED, winid, wxRibbonToolBarEventHandler(fn))
 #else
 
 // wxpython/swig event work
-%constant wxEventType wxEVT_COMMAND_RIBBONTOOL_CLICKED;
-%constant wxEventType wxEVT_COMMAND_RIBBONTOOL_DROPDOWN_CLICKED;
+%constant wxEventType wxEVT_RIBBONTOOLBAR_CLICKED;
+%constant wxEventType wxEVT_RIBBONTOOLBAR_DROPDOWN_CLICKED;
 
 %pythoncode {
-    EVT_RIBBONTOOLBAR_CLICKED = wx.PyEventBinder( wxEVT_COMMAND_RIBBONTOOL_CLICKED, 1 )
-    EVT_RIBBONTOOLBAR_DROPDOWN_CLICKED = wx.PyEventBinder( wxEVT_COMMAND_RIBBONTOOL_DROPDOWN_CLICKED, 1 )
+    EVT_RIBBONTOOLBAR_CLICKED = wx.PyEventBinder( wxEVT_RIBBONTOOLBAR_CLICKED, 1 )
+    EVT_RIBBONTOOLBAR_DROPDOWN_CLICKED = wx.PyEventBinder( wxEVT_RIBBONTOOLBAR_DROPDOWN_CLICKED, 1 )
 }
 #endif
+
+// old wxEVT_COMMAND_* constants
+#define wxEVT_COMMAND_RIBBONTOOL_CLICKED            wxEVT_RIBBONTOOLBAR_CLICKED
+#define wxEVT_COMMAND_RIBBONTOOL_DROPDOWN_CLICKED   wxEVT_RIBBONTOOLBAR_DROPDOWN_CLICKED
 
 #endif // wxUSE_RIBBON
 

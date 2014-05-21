@@ -4,7 +4,6 @@
 // Author:      Mattia Barbon and Vadim Zeitlin
 // Modified by:
 // Created:     07/07/03
-// RCS-ID:      $Id$
 // Copyright:   (c) 2003 Vadim Zeitlin <zeitlin@dptmaths.ens-cachan.fr>
 // Licence:     wxWindows licence
 ///////////////////////////////////////////////////////////////////////////////
@@ -425,7 +424,7 @@ private:
 // ----------------------------------------------------------------------------
 
 // by default, these functions use the escape character to escape the
-// separators occuring inside the string to be joined, this can be disabled by
+// separators occurring inside the string to be joined, this can be disabled by
 // passing '\0' as escape
 
 WXDLLIMPEXP_BASE wxString wxJoin(const wxArrayString& arr,

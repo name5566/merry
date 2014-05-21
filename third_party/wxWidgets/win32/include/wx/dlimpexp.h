@@ -4,7 +4,6 @@
  * Author:      Vadim Zeitlin
  * Modified by:
  * Created:     16.10.2003 (extracted from wx/defs.h)
- * RCS-ID:      $Id$
  * Copyright:   (c) 2003 Vadim Zeitlin <vadim@wxwidgets.org>
  * Licence:     wxWindows licence
  */
@@ -92,8 +91,8 @@
 #    define WXMAKINGDLL_XML
 #    define WXMAKINGDLL_XRC
 #    define WXMAKINGDLL_AUI
-#    define WXMAKINGDLL_RIBBON
 #    define WXMAKINGDLL_PROPGRID
+#    define WXMAKINGDLL_RIBBON
 #    define WXMAKINGDLL_RICHTEXT
 #    define WXMAKINGDLL_MEDIA
 #    define WXMAKINGDLL_STC
@@ -224,14 +223,6 @@
 #    define WXDLLIMPEXP_AUI
 #endif
 
-#ifdef WXMAKINGDLL_RIBBON
-#    define WXDLLIMPEXP_RIBBON WXEXPORT
-#elif defined(WXUSINGDLL)
-#    define WXDLLIMPEXP_RIBBON WXIMPORT
-#else /* not making nor using DLL */
-#    define WXDLLIMPEXP_RIBBON
-#endif
-
 #ifdef WXMAKINGDLL_PROPGRID
 #    define WXDLLIMPEXP_PROPGRID WXEXPORT
 #    define WXDLLIMPEXP_DATA_PROPGRID(type) WXEXPORT type
@@ -241,6 +232,14 @@
 #else /* not making nor using DLL */
 #    define WXDLLIMPEXP_PROPGRID
 #    define WXDLLIMPEXP_DATA_PROPGRID(type) type
+#endif
+
+#ifdef WXMAKINGDLL_RIBBON
+#    define WXDLLIMPEXP_RIBBON WXEXPORT
+#elif defined(WXUSINGDLL)
+#    define WXDLLIMPEXP_RIBBON WXIMPORT
+#else /* not making nor using DLL */
+#    define WXDLLIMPEXP_RIBBON
 #endif
 
 #ifdef WXMAKINGDLL_RICHTEXT
@@ -299,6 +298,7 @@
     #define WXDLLIMPEXP_FWD_XRC
     #define WXDLLIMPEXP_FWD_AUI
     #define WXDLLIMPEXP_FWD_PROPGRID
+    #define WXDLLIMPEXP_FWD_RIBBON
     #define WXDLLIMPEXP_FWD_RICHTEXT
     #define WXDLLIMPEXP_FWD_MEDIA
     #define WXDLLIMPEXP_FWD_STC
@@ -315,6 +315,7 @@
     #define WXDLLIMPEXP_FWD_XRC       WXDLLIMPEXP_XRC
     #define WXDLLIMPEXP_FWD_AUI       WXDLLIMPEXP_AUI
     #define WXDLLIMPEXP_FWD_PROPGRID  WXDLLIMPEXP_PROPGRID
+    #define WXDLLIMPEXP_FWD_RIBBON    WXDLLIMPEXP_RIBBON
     #define WXDLLIMPEXP_FWD_RICHTEXT  WXDLLIMPEXP_RICHTEXT
     #define WXDLLIMPEXP_FWD_MEDIA     WXDLLIMPEXP_MEDIA
     #define WXDLLIMPEXP_FWD_STC       WXDLLIMPEXP_STC

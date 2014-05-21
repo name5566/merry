@@ -4,7 +4,6 @@
 // Author:      Jaakko Salli
 // Modified by:
 // Created:     2004-09-25
-// RCS-ID:      $Id$
 // Copyright:   (c) Jaakko Salli
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -330,6 +329,10 @@ public:
 protected:
     wxBitmap*   m_pBitmap; // final thumbnail area
     wxImage*    m_pImage; // intermediate thumbnail area
+
+private:
+    // Initialize m_pImage using the current file name.
+    void LoadImageFromFile();
 };
 
 #endif

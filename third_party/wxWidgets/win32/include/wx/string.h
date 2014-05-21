@@ -4,7 +4,6 @@
 // Author:      Vadim Zeitlin
 // Modified by:
 // Created:     29/01/98
-// RCS-ID:      $Id$
 // Copyright:   (c) 1998 Vadim Zeitlin <zeitlin@dptmaths.ens-cachan.fr>
 // Licence:     wxWindows licence
 ///////////////////////////////////////////////////////////////////////////////
@@ -42,10 +41,6 @@
 #  include <limits.h>
 #  include <stdlib.h>
 #endif
-
-#ifdef HAVE_STRCASECMP_IN_STRINGS_H
-    #include <strings.h>    // for strcasecmp()
-#endif // HAVE_STRCASECMP_IN_STRINGS_H
 
 #include "wx/wxcrtbase.h"   // for wxChar, wxStrlen() etc.
 #include "wx/strvararg.h"
@@ -134,61 +129,18 @@ namespace wxPrivate
 // backwards compatibility only.
 
 // checks whether the passed in pointer is NULL and if the string is empty
-wxDEPRECATED( inline bool IsEmpty(const char *p) );
+wxDEPRECATED_MSG("use wxIsEmpty() instead")
 inline bool IsEmpty(const char *p) { return (!p || !*p); }
 
 // safe version of strlen() (returns 0 if passed NULL pointer)
-wxDEPRECATED( inline size_t Strlen(const char *psz) );
+wxDEPRECATED_MSG("use wxStrlen() instead")
 inline size_t Strlen(const char *psz)
   { return psz ? strlen(psz) : 0; }
 
 // portable strcasecmp/_stricmp
-wxDEPRECATED( inline int Stricmp(const char *psz1, const char *psz2) );
+wxDEPRECATED_MSG("use wxStricmp() instead")
 inline int Stricmp(const char *psz1, const char *psz2)
-{
-#if defined(__VISUALC__) && defined(__WXWINCE__)
-  register char c1, c2;
-  do {
-    c1 = tolower(*psz1++);
-    c2 = tolower(*psz2++);
-  } while ( c1 && (c1 == c2) );
-
-  return c1 - c2;
-#elif defined(__VISUALC__)
-  return _stricmp(psz1, psz2);
-#elif defined(__SC__)
-  return _stricmp(psz1, psz2);
-#elif defined(__BORLANDC__)
-  return stricmp(psz1, psz2);
-#elif defined(__WATCOMC__)
-  return stricmp(psz1, psz2);
-#elif defined(__DJGPP__)
-  return stricmp(psz1, psz2);
-#elif defined(__EMX__)
-  return stricmp(psz1, psz2);
-#elif defined(__WXPM__)
-  return stricmp(psz1, psz2);
-#elif defined(HAVE_STRCASECMP_IN_STRING_H) || \
-      defined(HAVE_STRCASECMP_IN_STRINGS_H) || \
-      defined(__GNUWIN32__)
-  return strcasecmp(psz1, psz2);
-#else
-  // almost all compilers/libraries provide this function (unfortunately under
-  // different names), that's why we don't implement our own which will surely
-  // be more efficient than this code (uncomment to use):
-  /*
-    register char c1, c2;
-    do {
-      c1 = tolower(*psz1++);
-      c2 = tolower(*psz2++);
-    } while ( c1 && (c1 == c2) );
-
-    return c1 - c2;
-  */
-
-  #error  "Please define string case-insensitive compare for your OS/compiler"
-#endif  // OS/compiler
-}
+    { return wxCRT_StricmpA(psz1, psz2); }
 
 #endif // WXWIN_COMPATIBILITY_2_8
 
@@ -889,7 +841,7 @@ public:
       public:                                                               \
           WX_DEFINE_ITERATOR_CATEGORY(WX_STR_ITERATOR_TAG)                  \
           typedef wxUniChar value_type;                                     \
-          typedef int difference_type;                                      \
+          typedef ptrdiff_t difference_type;                                \
           typedef reference_type reference;                                 \
           typedef pointer_type pointer;                                     \
                                                                             \

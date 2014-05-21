@@ -4,7 +4,6 @@
 // Author:      Jaakko Salli
 // Modified by:
 // Created:     2007-03-28
-// RCS-ID:      $Id$
 // Copyright:   (c) Jaakko Salli
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -838,7 +837,7 @@ PROPNAME::~PROPNAME() { } \
 bool PROPNAME::OnEvent( wxPropertyGrid* propgrid, \
                         wxWindow* primary, wxEvent& event ) \
 { \
-    if ( event.GetEventType() == wxEVT_COMMAND_BUTTON_CLICKED ) \
+    if ( event.GetEventType() == wxEVT_BUTTON ) \
         return OnButtonClick(propgrid,primary,(const wxChar*) CUSTBUTTXT); \
     return false; \
 }

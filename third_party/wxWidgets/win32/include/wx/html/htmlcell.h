@@ -3,7 +3,6 @@
 // Purpose:     wxHtmlCell class is used by wxHtmlWindow/wxHtmlWinParser
 //              as a basic visual element of HTML page
 // Author:      Vaclav Slavik
-// RCS-ID:      $Id$
 // Copyright:   (c) 1999-2003 Vaclav Slavik
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -91,10 +90,13 @@ public:
     const wxColour& GetFgColour() const { return m_fgColour; }
     void SetBgColour(const wxColour& c) { m_bgColour = c; }
     const wxColour& GetBgColour() const { return m_bgColour; }
+    void SetBgMode(int m) { m_bgMode = m; }
+    int GetBgMode() const { return m_bgMode; }
 
 private:
     wxHtmlSelectionState  m_selState;
     wxColour              m_fgColour, m_bgColour;
+    int                   m_bgMode;
 };
 
 
@@ -204,8 +206,16 @@ public:
                                     int WXUNUSED(y) = 0) const
         { return m_Link; }
 
-    // Returns cursor to be used when mouse is over the cell:
+    // Returns cursor to be used when mouse is over the cell, can be
+    // overridden by the derived classes to use a different cursor whenever the
+    // mouse is over this cell.
     virtual wxCursor GetMouseCursor(wxHtmlWindowInterface *window) const;
+
+    // Returns cursor to be used when mouse is over the given point, can be
+    // overridden if the cursor should change depending on where exactly inside
+    // the cell the mouse is.
+    virtual wxCursor GetMouseCursorAt(wxHtmlWindowInterface *window,
+                                      const wxPoint& relPos) const;
 
 #if WXWIN_COMPATIBILITY_2_6
     // this was replaced by GetMouseCursor, don't use in new code!
@@ -342,9 +352,9 @@ protected:
     wxHtmlContainerCell *m_Parent;
 
     // dimensions of fragment (m_Descent is used to position text & images)
-    long m_Width, m_Height, m_Descent;
+    int m_Width, m_Height, m_Descent;
     // position where the fragment is drawn:
-    long m_PosX, m_PosY;
+    int m_PosX, m_PosY;
 
     // superscript/subscript/normal:
     wxHtmlScriptMode m_ScriptMode;
@@ -474,7 +484,7 @@ public:
     // sets minimal height of this container.
     void SetMinHeight(int h, int align = wxHTML_ALIGN_TOP) {m_MinHeight = h; m_MinHeightAlign = align; m_LastLayout = -1;}
 
-    void SetBackgroundColour(const wxColour& clr) {m_UseBkColour = true; m_BkColour = clr;}
+    void SetBackgroundColour(const wxColour& clr) {m_BkColour = clr;}
     // returns background colour (of wxNullColour if none set), so that widgets can
     // adapt to it:
     wxColour GetBackgroundColour();
@@ -534,7 +544,6 @@ protected:
             // alignment horizontal and vertical (left, center, right)
     int m_WidthFloat, m_WidthFloatUnits;
             // width float is used in adjustWidth
-    bool m_UseBkColour;
     wxColour m_BkColour;
             // background color of this container
     int m_Border;

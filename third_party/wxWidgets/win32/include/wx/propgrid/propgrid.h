@@ -4,7 +4,6 @@
 // Author:      Jaakko Salli
 // Modified by:
 // Created:     2004-09-25
-// RCS-ID:      $Id$
 // Copyright:   (c) Jaakko Salli
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -1609,7 +1608,7 @@ public:
     */
     bool IsMainButtonEvent( const wxEvent& event )
     {
-        return (event.GetEventType() == wxEVT_COMMAND_BUTTON_CLICKED)
+        return (event.GetEventType() == wxEVT_BUTTON)
                     && (m_wndSecId == event.GetId());
     }
 

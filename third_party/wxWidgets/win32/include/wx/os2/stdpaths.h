@@ -4,7 +4,6 @@
 // Author:      Stefan Neis
 // Modified by:
 // Created:     2004-11-06
-// RCS-ID:      $Id$
 // Copyright:   (c) 2004 Stefan Neis <Stefan.Neis@t-online.de>
 // Licence:     wxWindows licence
 ///////////////////////////////////////////////////////////////////////////////
@@ -39,6 +38,11 @@ public:
     virtual wxString GetDataDir() const;
     virtual wxString GetUserDataDir() const;
     virtual wxString GetPluginsDir() const;
+
+protected:
+    // Ctor is protected, use wxStandardPaths::Get() instead of instantiating
+    // objects of this class directly.
+    wxStandardPaths() { }
 
 private:
     static wxString m_prefix;

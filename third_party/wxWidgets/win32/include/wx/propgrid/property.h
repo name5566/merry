@@ -4,7 +4,6 @@
 // Author:      Jaakko Salli
 // Modified by:
 // Created:     2008-08-23
-// RCS-ID:      $Id$
 // Copyright:   (c) Jaakko Salli
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -1293,7 +1292,7 @@ public:
         button press events of TextCtrlAndButton class, can be handled here.
         Also, if custom handling for regular events is desired, then that can
         also be done (for example, wxSystemColourProperty custom handles
-        wxEVT_COMMAND_CHOICE_SELECTED to display colour picker dialog when
+        wxEVT_CHOICE to display colour picker dialog when
         'custom' selection is made).
 
         If the event causes value to be changed, SetValueInEvent()

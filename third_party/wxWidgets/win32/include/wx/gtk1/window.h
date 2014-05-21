@@ -2,7 +2,6 @@
 // Name:        wx/gtk1/window.h
 // Purpose:
 // Author:      Robert Roebling
-// Id:          $Id$
 // Copyright:   (c) 1998 Robert Roebling
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -15,10 +14,6 @@ typedef struct _GtkTooltips GtkTooltips;
 typedef struct _GdkIC GdkIC;
 typedef struct _GdkICAttr GdkICAttr;
 #endif
-
-// helper structure that holds class that holds GtkIMContext object and
-// some additional data needed for key events processing
-struct wxGtkIMData;
 
 //-----------------------------------------------------------------------------
 // callback definition for inserting a window (internal)

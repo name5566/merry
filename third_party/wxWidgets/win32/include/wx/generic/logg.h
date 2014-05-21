@@ -4,7 +4,6 @@
 // Author:      Vadim Zeitlin
 // Modified by:
 // Created:     29/01/98
-// RCS-ID:      $Id$
 // Copyright:   (c) 1998 Vadim Zeitlin <zeitlin@dptmaths.ens-cachan.fr>
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -127,9 +126,6 @@ public:
     wxFrame *GetFrame() const;
 
     // overridables
-        // called immediately after the log frame creation allowing for
-        // any extra initializations
-    virtual void OnFrameCreate(wxFrame *frame);
         // called if the user closes the window interactively, will not be
         // called if it is destroyed for another reason (such as when program
         // exits) - return true from here to allow the frame to close, false

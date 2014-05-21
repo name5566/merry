@@ -5,7 +5,6 @@
 // Author:      Vadim Zeitlin, Vaclav Slavik
 // Modified by:
 // Created:     06.08.01
-// RCS-ID:      $Id$
 // Copyright:   (c) 2001 Vadim Zeitlin <zeitlin@dptmaths.ens-cachan.fr>
 //                       Vaclav Slavik <vaclav@wxwidgets.org>
 // Licence:     wxWindows licence
@@ -20,7 +19,6 @@
 
 #include "wx/nonownedwnd.h"
 #include "wx/iconbndl.h"
-#include "wx/containr.h"
 #include "wx/weakref.h"
 
 // the default names for various classes
@@ -157,8 +155,7 @@ enum
 // wxTopLevelWindow: a top level (as opposed to child) window
 // ----------------------------------------------------------------------------
 
-class WXDLLIMPEXP_CORE wxTopLevelWindowBase :
-    public wxNavigationEnabled<wxNonOwnedWindow>
+class WXDLLIMPEXP_CORE wxTopLevelWindowBase : public wxNonOwnedWindow
 {
 public:
     // construction
@@ -272,7 +269,6 @@ public:
     wxWindow *SetTmpDefaultItem(wxWindow *win)
         { wxWindow *old = GetDefaultItem(); m_winTmpDefault = win; return old; }
 
-
     // implementation only from now on
     // -------------------------------
 
@@ -304,6 +300,13 @@ public:
     virtual bool OSXIsModified() const { return m_modified; }
 
     virtual void SetRepresentedFilename(const wxString& WXUNUSED(filename)) { }
+
+#if wxUSE_MENUS || wxUSE_TOOLBAR
+    // show help text for the currently selected menu or toolbar item
+    // (typically in the status bar) or hide it and restore the status bar text
+    // originally shown before the menu was opened if show == false
+    virtual void DoGiveHelp(const wxString& WXUNUSED(text), bool WXUNUSED(show))  {}
+#endif
 
 protected:
     // the frame client to screen translation should take account of the

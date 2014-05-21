@@ -2,7 +2,6 @@
 // Name:        wx/html/htmlwin.h
 // Purpose:     wxHtmlWindow class for parsing & displaying HTML
 // Author:      Vaclav Slavik
-// RCS-ID:      $Id$
 // Copyright:   (c) 1999 Vaclav Slavik
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -227,8 +226,8 @@ private:
 //                  Purpose of this class is to display HTML page (either local
 //                  file or downloaded via HTTP protocol) in a window. Width of
 //                  window is constant - given in constructor - virtual height
-//                  is changed dynamicly depending on page size.  Once the
-//                  window is created you can set it's content by calling
+//                  is changed dynamically depending on page size.  Once the
+//                  window is created you can set its content by calling
 //                  SetPage(text) or LoadPage(filename).
 // ----------------------------------------------------------------------------
 
@@ -560,9 +559,9 @@ private:
 
 class WXDLLIMPEXP_FWD_HTML wxHtmlCellEvent;
 
-wxDECLARE_EXPORTED_EVENT( WXDLLIMPEXP_HTML, wxEVT_COMMAND_HTML_CELL_CLICKED, wxHtmlCellEvent );
-wxDECLARE_EXPORTED_EVENT( WXDLLIMPEXP_HTML, wxEVT_COMMAND_HTML_CELL_HOVER, wxHtmlCellEvent );
-wxDECLARE_EXPORTED_EVENT( WXDLLIMPEXP_HTML, wxEVT_COMMAND_HTML_LINK_CLICKED, wxHtmlLinkEvent );
+wxDECLARE_EXPORTED_EVENT( WXDLLIMPEXP_HTML, wxEVT_HTML_CELL_CLICKED, wxHtmlCellEvent );
+wxDECLARE_EXPORTED_EVENT( WXDLLIMPEXP_HTML, wxEVT_HTML_CELL_HOVER, wxHtmlCellEvent );
+wxDECLARE_EXPORTED_EVENT( WXDLLIMPEXP_HTML, wxEVT_HTML_LINK_CLICKED, wxHtmlLinkEvent );
 
 
 /*!
@@ -615,7 +614,7 @@ class WXDLLIMPEXP_HTML wxHtmlLinkEvent : public wxCommandEvent
 public:
     wxHtmlLinkEvent() {}
     wxHtmlLinkEvent(int id, const wxHtmlLinkInfo &linkinfo)
-        : wxCommandEvent(wxEVT_COMMAND_HTML_LINK_CLICKED, id)
+        : wxCommandEvent(wxEVT_HTML_LINK_CLICKED, id)
     {
         m_linkInfo = linkinfo;
     }
@@ -641,12 +640,17 @@ typedef void (wxEvtHandler::*wxHtmlLinkEventFunction)(wxHtmlLinkEvent&);
     wxEVENT_HANDLER_CAST(wxHtmlLinkEventFunction, func)
 
 #define EVT_HTML_CELL_CLICKED(id, fn) \
-    wx__DECLARE_EVT1(wxEVT_COMMAND_HTML_CELL_CLICKED, id, wxHtmlCellEventHandler(fn))
+    wx__DECLARE_EVT1(wxEVT_HTML_CELL_CLICKED, id, wxHtmlCellEventHandler(fn))
 #define EVT_HTML_CELL_HOVER(id, fn) \
-    wx__DECLARE_EVT1(wxEVT_COMMAND_HTML_CELL_HOVER, id, wxHtmlCellEventHandler(fn))
+    wx__DECLARE_EVT1(wxEVT_HTML_CELL_HOVER, id, wxHtmlCellEventHandler(fn))
 #define EVT_HTML_LINK_CLICKED(id, fn) \
-    wx__DECLARE_EVT1(wxEVT_COMMAND_HTML_LINK_CLICKED, id, wxHtmlLinkEventHandler(fn))
+    wx__DECLARE_EVT1(wxEVT_HTML_LINK_CLICKED, id, wxHtmlLinkEventHandler(fn))
 
+
+// old wxEVT_COMMAND_* constants
+#define wxEVT_COMMAND_HTML_CELL_CLICKED   wxEVT_HTML_CELL_CLICKED
+#define wxEVT_COMMAND_HTML_CELL_HOVER     wxEVT_HTML_CELL_HOVER
+#define wxEVT_COMMAND_HTML_LINK_CLICKED   wxEVT_HTML_LINK_CLICKED
 
 #endif // wxUSE_HTML
 

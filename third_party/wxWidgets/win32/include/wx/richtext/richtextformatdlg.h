@@ -4,7 +4,6 @@
 // Author:      Julian Smart
 // Modified by:
 // Created:     2006-10-01
-// RCS-ID:      $Id$
 // Copyright:   (c) Julian Smart
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -225,14 +224,16 @@ public:
     /// Determines whether tooltips will be shown
     static void SetShowToolTips(bool show) { sm_showToolTips = show; }
 
-    /// Set the dimension into the value and units controls
-    static void SetDimensionValue(wxTextAttrDimension& dim, wxTextCtrl* valueCtrl, wxComboBox* unitsCtrl, wxCheckBox* checkBox);
+    /// Set the dimension into the value and units controls. Optionally pass units to
+    /// specify the ordering of units in the combobox.
+    static void SetDimensionValue(wxTextAttrDimension& dim, wxTextCtrl* valueCtrl, wxComboBox* unitsCtrl, wxCheckBox* checkBox, wxArrayInt* units = NULL);
 
-    /// Get the dimension from the value and units controls
-    static void GetDimensionValue(wxTextAttrDimension& dim, wxTextCtrl* valueCtrl, wxComboBox* unitsCtrl, wxCheckBox* checkBox);
+    /// Get the dimension from the value and units controls Optionally pass units to
+    /// specify the ordering of units in the combobox.
+    static void GetDimensionValue(wxTextAttrDimension& dim, wxTextCtrl* valueCtrl, wxComboBox* unitsCtrl, wxCheckBox* checkBox, wxArrayInt* units = NULL);
 
-    /// Convert CM to MM
-    static bool ConvertFromString(const wxString& string, int& ret, int scale);
+    /// Convert from a string to a dimension integer.
+    static bool ConvertFromString(const wxString& str, int& ret, int unit);
 
     /// Map book control page index to our page id
     void AddPageId(int id) { m_pageIds.Add(id); }

@@ -4,7 +4,6 @@
 // Author:      Peter Cawley
 // Modified by:
 // Created:     2009-05-25
-// RCS-ID:      $Id$
 // Copyright:   (C) Peter Cawley
 // Licence:     wxWindows licence
 ///////////////////////////////////////////////////////////////////////////////
@@ -56,10 +55,13 @@ public:
     virtual bool Layout();
     virtual bool ScrollLines(int lines);
     bool ScrollPixels(int pixels);
+    bool ScrollSections(int sections);
 
     wxOrientation GetMajorAxis() const;
 
     virtual void RemoveChild(wxWindowBase *child);
+
+    void HideIfExpanded();
 
 protected:
     virtual wxSize DoGetBestSize() const;

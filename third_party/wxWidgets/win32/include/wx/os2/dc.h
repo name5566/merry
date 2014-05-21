@@ -4,7 +4,6 @@
 // Author:      David Webster
 // Modified by:
 // Created:     08/26/99
-// RCS-ID:      $Id$
 // Copyright:   (c) David Webster
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -336,12 +335,12 @@ public:
                             ) const;
 
     virtual void DoDrawLines( int     n
-                             ,wxPoint vaPoints[]
+                             ,const wxPoint vaPoints[]
                              ,wxCoord vXoffset
                              ,wxCoord yYoffset
                             );
     virtual void DoDrawPolygon( int     n
-                               ,wxPoint vaPoints[]
+                               ,const wxPoint vaPoints[]
                                ,wxCoord vXoffset
                                ,wxCoord vYoffset
                                ,wxPolygonFillMode     nFillStyle = wxODDEVEN_RULE

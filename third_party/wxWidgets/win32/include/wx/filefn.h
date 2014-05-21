@@ -4,7 +4,6 @@
 // Author:      Julian Smart
 // Modified by:
 // Created:     29/01/98
-// RCS-ID:      $Id$
 // Copyright:   (c) 1998 Julian Smart
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -171,6 +170,7 @@ enum wxPosixPermissions
     #define wxFileOffsetFmtSpec wxT("I64")
     WXDLLIMPEXP_BASE int wxCRT_Open(const wxChar *filename, int oflag, int WXUNUSED(pmode));
     WXDLLIMPEXP_BASE int wxCRT_Access(const wxChar *name, int WXUNUSED(how));
+    WXDLLIMPEXP_BASE int wxCRT_Chmod(const wxChar *name, int WXUNUSED(how));
     WXDLLIMPEXP_BASE int wxClose(int fd);
     WXDLLIMPEXP_BASE int wxFsync(int WXUNUSED(fd));
     WXDLLIMPEXP_BASE int wxRead(int fd, void *buf, unsigned int count);
@@ -204,7 +204,7 @@ enum wxPosixPermissions
     #if defined(__VISUALC__)
         #define wxHAS_HUGE_FILES 1
     #elif defined(__MINGW32__) || defined(__MINGW64__)
-        #define wxHAS_HUGE_FILES 1
+        #define wxHAS_HUGE_FILES 1f
     #elif defined(_LARGE_FILES)
         #define wxHAS_HUGE_FILES 1
     #endif
@@ -331,6 +331,7 @@ enum wxPosixPermissions
     // first the ANSI versions
     #define   wxCRT_OpenA       wxPOSIX_IDENT(open)
     #define   wxCRT_AccessA     wxPOSIX_IDENT(access)
+    #define   wxCRT_ChmodA      wxPOSIX_IDENT(chmod)
     #define   wxCRT_MkDirA      wxPOSIX_IDENT(mkdir)
     #define   wxCRT_RmDirA      wxPOSIX_IDENT(rmdir)
     #ifdef wxHAS_HUGE_FILES
@@ -362,6 +363,7 @@ enum wxPosixPermissions
         #endif
 
         #define   wxCRT_AccessW     _waccess
+        #define   wxCRT_ChmodW      _wchmod
         #define   wxCRT_MkDirW      _wmkdir
         #define   wxCRT_RmDirW      _wrmdir
         #ifdef wxHAS_HUGE_FILES
@@ -380,6 +382,8 @@ enum wxPosixPermissions
                                                int flags, int mode);
             WXDLLIMPEXP_BASE int wxMSLU__waccess(const wxChar *name,
                                                  int mode);
+            WXDLLIMPEXP_BASE int wxMSLU__wchmod(const wxChar *name,
+                                                 int mode);
             WXDLLIMPEXP_BASE int wxMSLU__wmkdir(const wxChar *name);
             WXDLLIMPEXP_BASE int wxMSLU__wrmdir(const wxChar *name);
 
@@ -389,12 +393,14 @@ enum wxPosixPermissions
             #define   wxCRT_Open       wxMSLU__wopen
 
             #define   wxCRT_Access     wxMSLU__waccess
+            #define   wxCRT_Chmod      wxMSLU__wchmod
             #define   wxCRT_MkDir      wxMSLU__wmkdir
             #define   wxCRT_RmDir      wxMSLU__wrmdir
             #define   wxCRT_Stat       wxMSLU__wstat
         #else // !wxUSE_UNICODE_MSLU
             #define wxCRT_Open      wxCRT_OpenW
             #define wxCRT_Access    wxCRT_AccessW
+            #define wxCRT_Chmod     wxCRT_ChmodW
             #define wxCRT_MkDir     wxCRT_MkDirW
             #define wxCRT_RmDir     wxCRT_RmDirW
             #define wxCRT_Stat      wxCRT_StatW
@@ -402,6 +408,7 @@ enum wxPosixPermissions
     #else // !wxUSE_UNICODE
         #define wxCRT_Open      wxCRT_OpenA
         #define wxCRT_Access    wxCRT_AccessA
+        #define wxCRT_Chmod     wxCRT_ChmodA
         #define wxCRT_MkDir     wxCRT_MkDirA
         #define wxCRT_RmDir     wxCRT_RmDirA
         #define wxCRT_Stat      wxCRT_StatA
@@ -469,7 +476,6 @@ enum wxPosixPermissions
     #define   wxSeek       lseek
     #define   wxFsync      fsync
     #define   wxEof        eof
-
     #define   wxCRT_MkDir      mkdir
     #define   wxCRT_RmDir      rmdir
 
@@ -481,6 +487,7 @@ enum wxPosixPermissions
     #define   wxCRT_Stat       stat
     #define   wxCRT_Lstat      lstat
     #define   wxCRT_Access     access
+    #define   wxCRT_Chmod      chmod
 
     #define wxHAS_NATIVE_LSTAT
 #endif // platforms
@@ -502,6 +509,8 @@ enum wxPosixPermissions
 
 inline int wxAccess(const wxString& path, mode_t mode)
     { return wxCRT_Access(path.fn_str(), mode); }
+inline int wxChmod(const wxString& path, mode_t mode)
+    { return wxCRT_Chmod(path.fn_str(), mode); }
 inline int wxOpen(const wxString& path, int flags, mode_t mode)
     { return wxCRT_Open(path.fn_str(), flags, mode); }
 

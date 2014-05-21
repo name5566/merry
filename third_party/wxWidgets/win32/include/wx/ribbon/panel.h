@@ -4,7 +4,6 @@
 // Author:      Peter Cawley
 // Modified by:
 // Created:     2009-05-25
-// RCS-ID:      $Id$
 // Copyright:   (C) Peter Cawley
 // Licence:     wxWindows licence
 ///////////////////////////////////////////////////////////////////////////////
@@ -83,6 +82,8 @@ public:
     virtual wxSize GetBestSizeForParentSize(const wxSize& parentSize) const;
 
     long GetFlags() { return m_flags; }
+
+    void HideIfExpanded();
 
 protected:
     virtual wxSize DoGetBestSize() const;
@@ -171,7 +172,7 @@ private:
 
 #ifndef SWIG
 
-wxDECLARE_EXPORTED_EVENT(WXDLLIMPEXP_RIBBON, wxEVT_COMMAND_RIBBONPANEL_EXTBUTTON_ACTIVATED, wxRibbonPanelEvent);
+wxDECLARE_EXPORTED_EVENT(WXDLLIMPEXP_RIBBON, wxEVT_RIBBONPANEL_EXTBUTTON_ACTIVATED, wxRibbonPanelEvent);
 
 typedef void (wxEvtHandler::*wxRibbonPanelEventFunction)(wxRibbonPanelEvent&);
 
@@ -179,16 +180,19 @@ typedef void (wxEvtHandler::*wxRibbonPanelEventFunction)(wxRibbonPanelEvent&);
     wxEVENT_HANDLER_CAST(wxRibbonPanelEventFunction, func)
 
 #define EVT_RIBBONPANEL_EXTBUTTON_ACTIVATED(winid, fn) \
-    wx__DECLARE_EVT1(wxEVT_COMMAND_RIBBONPANEL_EXTBUTTON_ACTIVATED, winid, wxRibbonPanelEventHandler(fn))
+    wx__DECLARE_EVT1(wxEVT_RIBBONPANEL_EXTBUTTON_ACTIVATED, winid, wxRibbonPanelEventHandler(fn))
 #else
 
 // wxpython/swig event work
-%constant wxEventType wxEVT_COMMAND_RIBBONPANEL_ACTIVATED;
+%constant wxEventType wxEVT_RIBBONPANEL_EXTBUTTON_ACTIVATED;
 
 %pythoncode {
-    EVT_RIBBONPANEL_EXTBUTTON_ACTIVATED = wx.PyEventBinder( wxEVT_COMMAND_RIBBONPANEL_EXTBUTTON_ACTIVATED, 1 )
+    EVT_RIBBONPANEL_EXTBUTTON_ACTIVATED = wx.PyEventBinder( wxEVT_RIBBONPANEL_EXTBUTTON_ACTIVATED, 1 )
 }
 #endif
+
+// old wxEVT_COMMAND_* constants
+#define wxEVT_COMMAND_RIBBONPANEL_EXTBUTTON_ACTIVATED   wxEVT_RIBBONPANEL_EXTBUTTON_ACTIVATED
 
 #endif // wxUSE_RIBBON
 

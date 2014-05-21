@@ -3,7 +3,6 @@
 // Purpose:     Generic wxHeaderCtrl implementation
 // Author:      Vadim Zeitlin
 // Created:     2008-12-01
-// RCS-ID:      $Id$
 // Copyright:   (c) 2008 Vadim Zeitlin <vadim@wxwidgets.org>
 // Licence:     wxWindows licence
 ///////////////////////////////////////////////////////////////////////////////
@@ -117,7 +116,7 @@ private:
 
     // start (if m_colBeingResized is -1) or continue resizing the column
     //
-    // this generates wxEVT_COMMAND_HEADER_BEGIN_RESIZE/RESIZING events and can
+    // this generates wxEVT_HEADER_BEGIN_RESIZE/RESIZING events and can
     // cancel the operation if the user handler decides so
     void StartOrContinueResizing(unsigned int col, int xPhysical);
 
