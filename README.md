@@ -1,9 +1,4 @@
-Merry 的临时下载地址
---------------------
-
-* [merry v1.0.1 windows](http://pan.baidu.com/s/1c029j92)
-* [merry v1.0.0 windows](http://pan.baidu.com/s/1hq20ZRm)
-* [Merry v0.1.2](http://pan.baidu.com/s/11rtvS)
+[下载 Merry](https://github.com/name5566/merry/releases)
 
 本文总是以最新版本的 Merry 为准，因此下载的老版本可能和文档中描述的部分功能不符。
 
