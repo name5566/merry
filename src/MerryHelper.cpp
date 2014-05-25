@@ -4,7 +4,6 @@
 void MerryParseCommandStr(const wxString& commandStr, wxString& commandName, wxString& commandArg)
 {
 	bool inQM = false;
-	bool inText = false;
 	bool inSpace = false;
 
 	// http://alter.org.ua/docs/win/args/
@@ -26,7 +25,6 @@ void MerryParseCommandStr(const wxString& commandStr, wxString& commandName, wxS
 			{
 			case '\"':
 				inQM = true;
-				inText = true;
 				if (inSpace)
 					goto getParam;
 				inSpace = false;
@@ -35,11 +33,9 @@ void MerryParseCommandStr(const wxString& commandStr, wxString& commandName, wxS
 			case '\t':
 			case '\n':
 			case '\r':
-				inText = false;
 				inSpace = true;
 				break;
 			default:
-				inText = true;
 				if (inSpace)
 					goto getParam;
 				commandName += c;

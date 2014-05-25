@@ -70,7 +70,7 @@ long MerryController::GetDesktopForWindow(Window window) const
 	Atom request = XInternAtom(m_display, "_NET_WM_DESKTOP", False);
 	Atom type;
 	int size;
-	long nitems;
+	long nitems = 0;
 	unsigned char* data = this->GetWindowPropertyByAtom(window, request, &nitems, &type, &size);
 
 	long desktop = -1;
@@ -113,7 +113,7 @@ void* MerryController::GetForegroundWindow() const
 	Window root = XDefaultRootWindow(m_display);
 	Atom type;
 	int size;
-	long nitems;
+	long nitems = 0;
 	unsigned char* data = this->GetWindowPropertyByAtom(root, request, &nitems, &type, &size);
 
 	Window foregroundWindow = 0;

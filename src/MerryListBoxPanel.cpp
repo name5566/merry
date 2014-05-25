@@ -17,6 +17,7 @@ MerryListBoxPanel::MerryListBoxPanel(wxWindow* parent):
 	if (!wxImage::FindHandler(wxBITMAP_TYPE_PNG))
 		wxImage::AddHandler(new wxPNGHandler);
 	bool isOk = m_selectionItemBackground.LoadFile(MERRY_DEFAULT_LIST_BOX_ITEM_SELECTION_BACKGROUND_FILE, wxBITMAP_TYPE_PNG);
+	(void)isOk;
 	assert(isOk);
 	
 	for (int i=0; i<MERRY_DEFAULT_LIST_BOX_ITEM_MAX_NUM; ++i)
