@@ -7,7 +7,7 @@
 #if defined(__WXMSW__) || defined(__WXOSX__)
 #	define MERRY_HOTKEY_WX
 #elif defined(__WXGTK__)
-#	define MERRY_HOTKEY_X
+#	define MERRY_HOTKEY_ALL
 #endif
 
 class MerryHotkey
