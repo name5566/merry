@@ -42,7 +42,7 @@ void MerryTaskBarIcon::OnConfigEvent(wxCommandEvent& e)
 
 void MerryTaskBarIcon::OnAboutEvent(wxCommandEvent& e)
 {
-	new MerryInformationDialog(wxT("About Merry"), wxT("version 1.0.0 --- http://name5566.com"));
+	new MerryInformationDialog(wxT("About Merry"), wxT("version 1.0.1 --- https://github.com/name5566/merry"));
 }
 
 void MerryTaskBarIcon::OnExitEvent(wxCommandEvent& e)
