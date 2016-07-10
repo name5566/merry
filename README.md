@@ -77,7 +77,7 @@ end }
 
 ```lua
 -- 增加命令 say
-addcommand{ command = 'say', func = function(arg)
+addCommand{ command = 'say', func = function(arg)
     -- 在 merry 的命令窗口输入的 say 命令的参数将以字符串的形式传递给 arg
     message(arg)
 end }
