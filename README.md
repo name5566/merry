@@ -11,7 +11,7 @@ Merry 被设计为了能将日常重复性操作简化为一个快捷键或者�
 ----------
 Merry 运行之后的样子：
 
-![Merry 运行之后的样子](http://name5566.com/wp-content/uploads/2012/09/merry_1.0.0.png)
+![Merry 运行之后的样子](https://github.com/name5566/merry/blob/master/doc/merry_1.0.0.png)
 
 对于 Windows 用户来说，Windows 本身提供了一些快捷键，例如：
 
@@ -33,7 +33,7 @@ Merry 运行之后的样子：
 
 打开 Merry 命令输入窗口（Alt + R）可以执行命令。命令输入时会自动补全，如果需要为命令输入参数时则敲一下 TAB 键，例如：
 
-![使用 TAB 键](http://name5566.com/wp-content/uploads/2014/05/merry_arg.gif)
+![使用 TAB 键](https://github.com/name5566/merry/blob/master/doc/merry_arg.gif)
 
 默认提供的一些命令有：
 
@@ -488,7 +488,7 @@ end }
 
 Merry 的第一个对外版本发布，版本号 0.1.2，此版本仅仅支持 Windows
 
-![Merry 第一个对外版本](http://name5566.com/wp-content/uploads/2012/09/merry.png)
+![Merry 第一个对外版本](https://github.com/name5566/merry/blob/master/doc/merry.png)
 
 ### 2013/04/02
 
@@ -499,7 +499,7 @@ Merry 的第二个对外版本发布，版本号 1.0.0。版本相对于 0.1.2 �
 * 重新设计了界面
 * 已发现的少量 BUG 被修复
 
-![Merry 第二个对外版本](http://name5566.com/wp-content/uploads/2012/09/merry_1.0.0.png)
+![Merry 第二个对外版本](https://github.com/name5566/merry/blob/master/doc/merry_1.0.0.png)
 
 TODO LIST
 ---------
